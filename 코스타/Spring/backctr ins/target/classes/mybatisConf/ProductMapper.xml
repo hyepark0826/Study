@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.my.mapper.ProductMapper">
+<select id="selectAll" resultType="Product">
+SELECT * FROM product ORDER BY prod_no ASC
+</select>
+<select id="selectByProdNo" 
+        parameterType="string" 
+        resultType="Product">
+SELECT * FROM product WHERE prod_no=#{prodNo}
+</select>
+
+<!-- <select id="selecyByProdNoOrProdName" parameterType="string" resultType="Product">
+SELECT *
+FROM product
+WHERE prod_no LIKE #{word} OR prod_name LIKE #{word}  
+</select> -->
+<!-- 
+<select id="selecyByProdNoOrProdName" parameterType="string" resultType="Product">
+SELECT *
+FROM product
+WHERE prod_no LIKE '%${value}%' OR prod_name LIKE '%${value}%' 
+</select>
+ -->
+<select id="selecyByProdNoOrProdName" parameterType="hashmap" resultType="Product">
+SELECT *
+FROM product
+WHERE prod_no LIKE '%${word}%' OR prod_name LIKE '%${word}%' 
+ORDER BY ${order}
+</select>
+ 
+ 
+</mapper>

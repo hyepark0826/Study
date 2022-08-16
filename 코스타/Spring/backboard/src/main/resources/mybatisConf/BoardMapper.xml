@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.my.mapper.BoardMapper">
+<select id="selectByPage" parameterType="map" resultType="Board">
+SELECT *
+FROM (
+  SELECT rownum r, a.*
+  FROM (SELECT level, 
+               board_no, board_parent_no, board_title, board_content, board_id, board_viewcount
+          FROM board 
+          START WITH board_parent_no = 0
+          CONNECT BY PRIOR board_no = board_parent_no
+          ORDER SIBLINGS BY board_no DESC
+  ) a
+)
+WHERE r BETWEEN #{startRow} AND #{endRow}
+</select>
+<select id="selectCount" resultType="int">
+SELECT COUNT(*) FROM board
+</select>
+<select id="selectCount2" resultType="int" parameterType="string">
+SELECT COUNT(*) 
+FROM board 
+WHERE  board_title LIKE '%${value}%' OR board_id LIKE '%${value}%'
+</select>
+<select id="selectByWord" resultType="Board" parameterType="map">
+SELECT *
+FROM (
+  SELECT rownum r, a.*
+  FROM (SELECT level, 
+               board_no, board_parent_no, board_title, board_content, board_id, board_viewcount
+          FROM board 
+          WHERE board_title LIKE '%${word}%' OR board_id LIKE '%${word}%'
+          START WITH board_parent_no = 0
+          CONNECT BY PRIOR board_no = board_parent_no
+          ORDER SIBLINGS BY board_no DESC
+  ) a
+)
+WHERE r BETWEEN #{startRow} AND #{endRow}
+</select>
+<select id="selectByBoardNo" parameterType="int" resultType="Board">
+SELECT *
+FROM board
+WHERE board_no=#{boardNo}
+</select>
+
+<update id="update" parameterType="Board">
+UPDATE board
+<set>
+<choose>
+<when test="boardContent != null">
+ board_content = #{boardContent}
+</when>
+<when test="boardViewcount == -1">
+ board_viewcount = board_viewcount+1
+</when>
+</choose>
+</set>
+WHERE board_no=#{boardNo}
+</update>
+<!-- SET board_content = #{boardContent}, board_title= #{boardTitle} -->
+
+<delete id="deleteReply" parameterType="int">
+DELETE FROM board
+WHERE board_no IN ( SELECT  board_no
+                               FROM board
+                               START WITH board_parent_no = #{boardNo}
+                               CONNECT BY PRIOR board_no = board_parent_no)
+</delete>
+
+<delete id="deleteBoard" parameterType="int">
+DELETE FROM board
+WHERE board_no = #{boardNo}
+</delete>
+
+<insert id="insert" parameterType="Board">
+  <selectKey
+    keyProperty="boardNo"
+    resultType="int"
+    order="AFTER"
+    statementType="PREPARED">
+    SELECT board_seq.CURRVAL FROM dual
+  </selectKey>
+INSERT INTO board(board_no, board_parent_no, board_title,   board_content, board_id, board_viewcount)
+VALUES (board_seq.NEXTVAL, #{boardParentNo}, #{boardTitle},#{boardContent},#{boardId},     0)
+</insert>
+
+
+
+</mapper>

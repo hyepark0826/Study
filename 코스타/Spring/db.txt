@@ -1,0 +1,23 @@
+CREATE SEQUENCE sq_ptemp_no
+INCREMENT BY 1
+START WITH 100
+maxvalue 10000;
+
+create table p_temp_tb(
+ptemp_no number primary key,
+user_no VARCHAR2(30),
+ptemp_title varchar2(50),
+ptemp_content varchar2(2048),
+ptemp_createday date,
+ptemp_deadlineday date,
+ptemp_updateday date,
+ptemp_deleteday date,
+ptemp_category1 number(8),
+ptemp_category2 number(8),
+ptemp_category3 number(8)
+)
+
+
+검색
+
+

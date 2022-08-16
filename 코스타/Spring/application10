@@ -1,0 +1,17 @@
+server.port=9996
+server.servlet.context-path=/aop
+#server.servlet.context-parameters.filePath=c:\\files
+spring.datasource.hikari.driver-class-name=net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+spring.datasource.hikari.jdbc-url=jdbc:log4jdbc:oracle:thin:@127.0.0.1:1521:XE
+spring.datasource.hikari.username=hr
+spring.datasource.hikari.password=hr
+spring.datasource.hikari.minimum-idle=2
+
+#JPA 
+spring.jpa.database=oracle
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.generate-ddl=true
+spring.jpa.show-sql=true
+spring.jpa.database-platform=org.hibernate.dialect.Oracle10gDialect
+#SQL자동줄바꿈을 넣어줌
+spring.jpa.properties.hibernate.format_sql=true

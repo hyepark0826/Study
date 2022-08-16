@@ -1,0 +1,192 @@
+*{
+    box-sizing: border-box;
+}
+/*
+div.boardlist{
+    display: table;
+    width:80%;
+    border: 1px solid;
+}
+div.boardlist>div.board{
+    display: table-row;
+    width:100%;
+}
+
+div.boardlist>div.board>*{
+    display: table-cell;
+    width: 15%;
+    border: 1px solid;
+}
+div.boardlist>div.board:nth-child(1)>*{
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+} */
+
+div.boardlist_outline{
+    width:100%;
+    /* height: 500px; */
+    
+}
+div.boardlist{
+    display: table;
+    table-layout: fixed;/*fixed로 지정하면 셀안에 데이터 값의 길이가 길어져도 셀 너비는 고정되며, 넘치는 데이터값은 줄바꿈처리*/
+    width:90%;
+    border: 1px solid;
+    
+}
+/*행*/
+div.board{ 
+    display: table-row;
+}
+/*행의 열1개*/
+div.board>div.cell{
+    display: table-cell;
+    width:100%;
+    border-bottom: 1px solid #eceae5;
+}
+/*--열의 summary영역 START--*/
+/*열의 summary영역*/
+div.cell>div.summary{
+    display: table;
+    table-layout: fixed;
+    width:100%;
+}
+
+
+
+/*모든행의 열의 summary영역의 글번호, 부모글번호, 제목, 작성일자, 작성자ID,조회수 */ 
+div.board>div.cell>div.summary>div{
+    display: table-cell;
+    padding: 17px 0;
+    cursor: pointer;
+    color: #444;
+    line-height: 1.4;
+    font-size: 1em;
+}
+/*1행의 열의 summary영역의 글번호, 부모글번호, 제목, 작성일자, 작성자ID,조회수 수평중앙정렬 */
+div.board:first-child>div.cell>div.summary>div{
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+/*글번호*/
+div.summary>div.board_no{
+    width:10%;
+    text-align: left;
+}
+/*부모글번호*/
+div.summary>div.board_parent_no{
+    width:10%;
+}
+/*제목*/
+div.summary>div.board_title{
+    width:40%;
+}
+/*작성일자*/
+div.summary>div.board_dt{
+    width:15%;
+}
+/*작성자*/
+div.summary>div.board_id{
+    width:15%;
+}
+/*조회수*/
+div.summary>div.board_viewcount{
+    width:10%;
+}
+/*1행의 열의 화살표 */
+div.summary>div.arrow{
+    width:10%;
+}
+/*1행외의 행들 열의 summary에 화살표 배경이미지 */
+div.board:not(:first-child)>div.cell>div.summary>div.arrow.down{
+    width:10%;
+    background-image: url(../images/btn_arrow_down.png);
+    background-size: 50%;
+    background-position: right center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+div.board:not(:first-child)>div.cell>div.summary>div.arrow.up{
+    width:10%;
+    background-image: url(../images/btn_arrow_up.png);
+    background-size: 50%;
+    background-position: right center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+/*--열의 summary영역 END--*/
+/*--열의 detail영역 START--*/
+div.board>div.cell>div.detail{
+    display:none;
+}
+div.detail>input.board_content{
+
+}
+div.detail>div.modifyNremove{
+    display: inline-block;
+}
+div.detail>div.modifyNremove>*{
+    display: inline-block;
+}
+/*--열의 detail영역 END--*/
+
+/*    */
+div.pagegroup{
+    width:80%;
+    margin: 10px;
+    text-align: center;
+}
+div.pagegroup>span:not(.disabled){
+    border:1px solid;
+    padding : 3px;
+}
+div.pagegroup>span:not(.disabled):hover{
+    background-color: beige;
+}
+
+/*검색 영역 START*/
+div.search {
+    width: 90%;
+    height: 50px;
+    background: #f4f4f2;
+    padding: 15px 20px;
+    border-radius: 10px;
+    position: relative;
+    margin-bottom: 35px;
+    
+} 
+
+div.search div.searchInput {
+    position: absolute;
+    right: 20px;
+    top: auto;
+    width: 395px;
+    border-radius: 5px;
+}
+div.search div.searchInput input {
+    width: 343px;
+    height: 28px;
+    line-height: 28px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    float: left;
+}
+div.search div.searchInput a.searchBtn {
+    width: 42px;
+    height: 28px;
+    line-height: 28px;
+    background: #777777;
+    font-size: 12px;
+    font-weight: bold;
+    color: #ffffff;
+    display: block;
+    float: right;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 3px;
+}
+/*검색 영역 END*/

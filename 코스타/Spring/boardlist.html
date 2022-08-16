@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link href="../css/boardlist.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="../jq/boardlist.js"></script>
+  
+</head>
+<h1>게시판</h1>
+
+<div class="search">
+  <div class="searchInput">
+      <input type="search" name="word" placeholder="제목이나 아이디 검색">
+      <a href="#" class="searchBtn">검색</a>
+  </div>
+</div>
+
+<div class="boardlist_outline">
+  <div class="boardlist"><!--table-->
+    <div class="board"><!--tr--><!--게시글-->
+      <div class="cell"><!--td-->         
+        <div class="summary">
+          <div class="board_no">글번호</div>
+          <div class="board_parent_no">부모글번호</div>
+          <div class="board_title">제목</div>
+          <div class="board_dt">작성일자</div>
+          <div class="board_id">작성자</div>
+          <div class="board_viewcount">조회수</div>
+          <div class="arrow"></div>
+        </div>
+        <div class="detail">
+          <input class="board_content" placeholder="게시글 내용" readonly>
+          <div class="modifyNremove">
+            <button class="modify">수정</button>
+            <button class="remove">삭제</button>
+          </div>
+          <div class="reply">
+            <input type="text" name="reply"><button>답글저장</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pagegroup">
+  PREV 1 2 3 4 NEXT
+</div>
+
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.my.mapper.BoardMapper">
+<select id="selectByPage" parameterType="map" resultType="Board">
+SELECT *
+FROM (
+  SELECT rownum r, a.*
+  FROM (SELECT level, 
+               board_no, board_parent_no, board_title, board_content, board_id, board_viewcount
+          FROM board 
+          START WITH board_parent_no = 0
+          CONNECT BY PRIOR board_no = board_parent_no
+          ORDER SIBLINGS BY board_no DESC
+  ) a
+)
+WHERE r BETWEEN #{startRow} AND #{endRow}
+</select>
+</mapper>
