@@ -1,0 +1,22 @@
+AWS용어 정리
+
+//
+서버-EC2
+네트워크- VPC,ELB, Route53, Direct Connect
+스토리지 - S3, RRS, Glacier, EBS, Storage Gateway
+데이터베이스 - RDS,DynamoDB
+
+보안-IAM, SecurityGroup,NetworkACL
+모니터링- CloudWatch
+배포- CloudFormation Opsworks
+컨텐츠전송 - CloudFront
+
+메시지전송-SNS
+캐쉬 - Elastic Cache
+애플리케이션 배포 - Elastic Beanstalk
+실시간 분석 - Amazon Kinesis
+데이터처리 - Elastic MapReduce
+
+//
+
+서버 보안 research
