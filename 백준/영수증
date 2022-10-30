@@ -1,0 +1,16 @@
+import java.io.*;
+
+public class Baekjoon5565 {
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int n = Integer.parseInt(br.readLine());
+		
+		for(int i=0; i<9; i++) {
+			int minus = Integer.parseInt(br.readLine());
+			n -= minus;
+		}
+		System.out.println(n);
+	}
+
+}
