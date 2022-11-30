@@ -1,0 +1,9 @@
+var a = 100;
+console.log(a) //결과값 100
+var a = 200;
+console.log(a) //결과값 200
+var a = 300;
+console.log(a) //결과값 300
+var을 사용하며 중복으로 같으 변수명을 계속 선언하고 값을 넣어도 에러가 나지 않는다. 
+
+const 변수명을 중복으로 선언하며 let과 같이 에러가 발생..update하자.
